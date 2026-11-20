@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal Portfolio — Full Stack Developer specializing in the MEAN Stack" />
+  <meta name="theme-color" content="#727D73" />
+  <title>Portfolio — MEAN Stack Developer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23727D73'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='34' font-family='Arial' font-weight='700' fill='%23F0F0D7'%3EAN%3C/text%3E%3C/svg%3E" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<header id="navbar" role="banner">
+  <nav class="navbar-inner container" aria-label="Main navigation">
+
+    <!-- Logo -->
+    <a href="#home" class="nav-logo" aria-label="Go to home">
+      <span id="logo-initials" class="logo-initials">AN</span>
+      <span class="logo-dot"></span>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <ul class="nav-links" role="list">
+      <li><a href="#home"         class="nav-link" data-section="home"         aria-current="page">Home</a></li>
+      <li><a href="#about"        class="nav-link" data-section="about">About</a></li>
+      <li><a href="#education"    class="nav-link" data-section="education">Education</a></li>
+      <li><a href="#experience"   class="nav-link" data-section="experience">Experience</a></li>
+      <li><a href="#skills"       class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#projects"     class="nav-link" data-section="projects">Projects</a></li>
+      <li><a href="#services"     class="nav-link" data-section="services">Services</a></li>
+      <li><a href="#contact"      class="nav-link" data-section="contact">Contact</a></li>
+    </ul>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+        <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+      </button>
+
+      <!-- CV Button -->
+      <a href="assets/cv/my-cv.pdf" class="cv-btn" data-cv-link download aria-label="Download CV">
+        <i class="fas fa-download" aria-hidden="true"></i>
+        <span>Download CV</span>
+      </a>
+
+      <!-- Hamburger -->
+      <button id="hamburger" class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <ul role="list">
+      <li><a href="#home"         class="nav-link mobile-nav-link" data-section="home">Home</a></li>
+      <li><a href="#about"        class="nav-link mobile-nav-link" data-section="about">About</a></li>
+      <li><a href="#education"    class="nav-link mobile-nav-link" data-section="education">Education</a></li>
+      <li><a href="#experience"   class="nav-link mobile-nav-link" data-section="experience">Experience</a></li>
+      <li><a href="#skills"       class="nav-link mobile-nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#projects"     class="nav-link mobile-nav-link" data-section="projects">Projects</a></li>
+      <li><a href="#services"     class="nav-link mobile-nav-link" data-section="services">Services</a></li>
+      <li><a href="#contact"      class="nav-link mobile-nav-link" data-section="contact">Contact</a></li>
+    </ul>
+    <div class="mobile-actions">
+      <button id="theme-toggle-mob" class="theme-toggle-btn" aria-label="Toggle dark/light mode">
+        <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+        <span class="mob-theme-label">Toggle Theme</span>
+      </button>
+      <a href="assets/cv/my-cv.pdf" class="cv-btn cv-btn--mobile" data-cv-link download>
+        <i class="fas fa-download" aria-hidden="true"></i> Download CV
+      </a>
+    </div>
+  </div>
+</header>
+
+<nav class="social-dock" aria-label="Social links">
+  <a href="mailto:ahmedmahmoudnsr@gmail.com" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+  <a href="https://www.instagram.com/_nas_ora_?knvt=ZzR2bGZmdGJwZTdq" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+  <a href="https://www.facebook.com/share/182srDSqza/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+  <a href="https://wa.me/201024270459" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+  <a href="https://www.linkedin.com/in/ahmedd-nasrr/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+  <a href="https://github.com/AhmedMahmoudNasr-git" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HOME / HERO SECTION
+══════════════════════════════════════════ -->
+<section id="home" aria-label="Introduction">
+  <!-- Particle canvas background -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- Background blobs (CSS animated fallback) -->
+  <div class="hero-blob hero-blob--1" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--2" aria-hidden="true"></div>
+
+  <div class="container hero-container">
+
+    <!-- Text Content -->
+    <div class="hero-text" data-animate="fade-right">
+      <span class="hero-greeting">Hello, I'm</span>
+      <h1 id="hero-name" class="hero-name">Ahmed Nasr</h1>
+      <div class="hero-title-wrap">
+        <span id="hero-title" class="hero-title" aria-live="polite"></span>
+      </div>
+      <p class="hero-desc">
+        Crafting scalable, performant web experiences from database to pixel.
+        Passionate about clean code and meaningful user interfaces.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i> Hire Me
+        </a>
+        <a href="#projects" class="btn btn-secondary">
+          <i class="fas fa-code" aria-hidden="true"></i> View Projects
+        </a>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__mouse"></span>
+        <span class="scroll-hint__label">Scroll Down</span>
+      </div>
+    </div>
+
+    <!-- Profile Image -->
+    <div class="hero-image" data-animate="fade-left">
+      <div class="profile-img-wrapper float-animation">
+        <div class="profile-img-glow" aria-hidden="true"></div>
+        <img data-profile-img
+             src="assets/images/profile.jpg"
+             alt="Profile Photo"
+             class="profile-img"
+             loading="eager" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ABOUT SECTION
+══════════════════════════════════════════ -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="section-header" data-animate="fade-up">
+      <h2 id="about-heading" class="section-title">About Me</h2>
+      <div class="section-line" aria-hidden="true"></div>
+      <p class="section-subtitle">Get to know me better</p>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="about-grid">
+
+      <!-- Left: Image -->
+      <div class="about-image-col" data-animate="fade-right">
+        <div class="about-img-wrapper">
+          <img data-about-img
+               src="assets/images/about.jpg"
+               alt="About Me Photo"
+               class="about-img"
+               loading="lazy" />
+          <div class="about-img-bg" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Right: Text + Stats -->
+      <div class="about-content-col" data-animate="fade-left">
+        <div id="about-text" class="about-text">
+          <p>Passionate Full Stack Developer with expertise in the MEAN stack. I love building clean, scalable web applications that solve real problems.</p>
+        </div>
+
+        <a href="#contact" class="btn btn-primary about-cta">
+          <i class="fas fa-envelope" aria-hidden="true"></i> Let's Talk
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-grid" data-animate="fade-up" data-delay="200">
+
+      <div class="stat-card" id="stat-experience">
+        <div class="stat-icon" aria-hidden="true"><i class="fas fa-briefcase"></i></div>
+        <span class="stat-number" aria-live="polite">0+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+
+      <div class="stat-card" id="stat-projects">
+        <div class="stat-icon" aria-hidden="true"><i class="fas fa-code"></i></div>
+        <span class="stat-number" aria-live="polite">0+</span>
+        <span class="stat-label">Projects Done</span>
+      </div>
+
+      <div class="stat-card" id="stat-expertise">
+        <div class="stat-icon" aria-hidden="true"><i class="fas fa-layer-group"></i></div>
+        <span class="stat-number">MEAN</span>
+        <span class="stat-label">Expertise</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     EDUCATION SECTION
+══════════════════════════════════════════ -->
+<section id="education" class="section-alt" aria-labelledby="education-heading">
+  <div class="container">
+
+    <div class="section-header" data-animate="fade-up">
+      <h2 id="education-heading" class="section-title">My Education</h2>
+      <div class="section-line" aria-hidden="true"></div>
+      <p class="section-subtitle">Academic background and qualifications</p>
+    </div>
+
+    <!-- Education cards populated by JS -->
+    <div id="education-cards" class="education-cards" aria-label="Education history">
+      <!-- Dynamic content inserted by main.js -->
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     EXPERIENCE SECTION
+══════════════════════════════════════════ -->
+<section id="experience" aria-labelledby="experience-heading">
+  <div class="container">
+
+    <div class="section-header" data-animate="fade-up">
+      <h2 id="experience-heading" class="section-title">Experience</h2>
+      <div class="section-line" aria-hidden="true"></div>
+      <p class="section-subtitle">My professional journey</p>
+    </div>
+
+    <!-- Timeline — populated by main.js -->
+    <div id="experience-timeline" class="timeline" aria-label="Work experience timeline">
+      <!-- Dynamic content inserted by main.js -->
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SKILLS SECTION
+══════════════════════════════════════════ -->
+<section id="skills" class="section-alt" aria-labelledby="skills-heading">
+  <div class="container">
+
+    <div class="section-header" data-animate="fade-up">
+      <h2 id="skills-heading" class="section-title">My Skills</h2>
+      <div class="section-line" aria-hidden="true"></div>
+      <p class="section-subtitle">Technologies and tools I work with</p>
+    </div>
+
+    <!-- Tab Buttons -->
+    <div class="skills-tabs" role="tablist" aria-label="Skill categories" data-animate="fade-up" data-delay="100">
+      <button class="skills-tab" role="tab" data-target="programming-skills" aria-selected="true">
+        <i class="fas fa-terminal" aria-hidden="true"></i> Programming &amp; Concepts
+      </button>
+      <button class="skills-tab" role="tab" data-target="tech-skills" aria-selected="false">
+        <i class="fas fa-cubes" aria-hidden="true"></i> Technologies
+      </button>
+    </div>
+
+    <!-- Programming Skills Pane -->
+    <div id="programming-skills" class="skills-pane" role="tabpanel" aria-label="Programming skills">
+      <!-- Populated by main.js -->
+    </div>
+
+    <!-- Tech Skills Pane -->
+    <div id="tech-skills" class="skills-pane tech-grid" role="tabpanel" aria-label="Technology skills">
+      <!-- Populated by main.js -->
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FEATURED PROJECTS SECTION
+══════════════════════════════════════════ -->
+<section id="projects" aria-labelledby="projects-heading">
+  <div class="container">
+
+    <div class="section-header" data-animate="fade-up">
+      <h2 id="projects-heading" class="section-title">Featured Projects</h2>
+      <div class="section-line" aria-hidden="true"></div>
+      <p class="section-subtitle">A selection of my recent work</p>
+    </div>
+
+    <!-- Projects grid — populated by main.js -->
+    <div id="projects-grid" class="projects-grid" aria-label="Portfolio projects">
+      <!-- Dynamic content inserted by main.js -->
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS SECTION
+══════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     SERVICES SECTION
+══════════════════════════════════════════ -->
+<section id="services" aria-labelledby="services-heading">
+  <div class="container">
+
+    <div class="section-header" data-animate="fade-up">
+      <h2 id="services-heading" class="section-title">My Services</h2>
+      <div class="section-line" aria-hidden="true"></div>
+      <p class="section-subtitle">What I can do for you</p>
+    </div>
+
+    <!-- Services grid — populated by main.js -->
+    <div id="services-grid" class="services-grid" aria-label="Services offered">
+      <!-- Dynamic content inserted by main.js -->
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONTACT SECTION
+══════════════════════════════════════════ -->
+<section id="contact" class="section-alt" aria-labelledby="contact-heading">
+  <div class="container">
+
+    <div class="section-header" data-animate="fade-up">
+      <h2 id="contact-heading" class="section-title">Get In Touch</h2>
+      <div class="section-line" aria-hidden="true"></div>
+      <p class="section-subtitle">I'm open to new opportunities and collaborations</p>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- Contact Information -->
+      <div class="contact-info" data-animate="fade-right">
+        <p class="contact-intro">
+          Have a project in mind? Need a skilled developer for your team?
+          I'd love to hear from you. Drop me a message and I'll get back to you as soon as possible.
+        </p>
+
+        <div class="contact-cards">
+
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-card__details">
+              <span class="contact-card__label">Email</span>
+              <a id="contact-email-link" href="mailto:ahmedmahmoudnsr@gmail.com" class="contact-card__value contact-link-button">Send Email</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-card__details">
+              <span class="contact-card__label">Phone</span>
+              <a id="contact-phone-link" href="tel:+201024270459" class="contact-card__value contact-link-button">Call Ahmed</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="contact-card__details">
+              <span class="contact-card__label">WhatsApp</span>
+              <a href="https://wa.me/201024270459" target="_blank" rel="noopener noreferrer" class="contact-card__value contact-link-button">Chat With Ahmed</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+            <div class="contact-card__details">
+              <span class="contact-card__label">LinkedIn</span>
+              <a id="contact-linkedin-link" href="https://www.linkedin.com/in/ahmedd-nasrr/" target="_blank" rel="noopener noreferrer" class="contact-card__value contact-link-button">
+                Visit LinkedIn
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <i class="fab fa-github"></i>
+            </div>
+            <div class="contact-card__details">
+              <span class="contact-card__label">GitHub</span>
+              <a id="contact-github-link" href="https://github.com/AhmedMahmoudNasr-git" target="_blank" rel="noopener noreferrer" class="contact-card__value contact-link-button">
+                Visit GitHub
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card__icon" aria-hidden="true">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-card__details">
+              <span class="contact-card__label">Location</span>
+              <span class="contact-card__value" id="contact-location-text">Mansoura , Egypt</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer id="footer" role="contentinfo">
+  <div class="container footer-inner">
+
+    <!-- Logo & Name -->
+    <div class="footer-brand">
+      <span id="footer-logo" class="logo-initials footer-logo">AN</span>
+      <div>
+        <p id="footer-name" class="footer-name">Ahmed Nasr</p>
+        <p id="footer-title" class="footer-tagline">MEAN Stack Developer</p>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <p id="footer-copyright" class="footer-copy">
+      &copy; 2026 Ahmed Nasr. All rights reserved.
+    </p>
+
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     BACK TO TOP BUTTON
+══════════════════════════════════════════ -->
+<button id="back-to-top"
+        class="back-to-top"
+        aria-label="Scroll back to top"
+        title="Back to Top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS (defer to avoid blocking render)
+══════════════════════════════════════════ -->
+<script src="js/portfolio-data.js" defer></script>
+<script src="js/animations.js" defer></script>
+<script src="js/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,709 @@
+/* ============================================================
+   animations.css — Portfolio Website Animation Library
+   All keyframes, transitions, and micro-interaction styles
+   ============================================================ */
+
+
+/* ============================================================
+   1. FLOAT ANIMATION
+   ============================================================ */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-15px); }
+}
+
+.float-animation {
+  animation: float 4s ease-in-out infinite;
+}
+
+
+/* ============================================================
+   2. TYPING CURSOR BLINK
+   ============================================================ */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.typed-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.2em;
+  background: var(--color-primary);
+  margin-left: 4px;
+  vertical-align: middle;
+  border-radius: 1px;
+  animation: blink 1s ease-in-out infinite;
+}
+
+
+/* ============================================================
+   3. GRADIENT SHIFT
+   For animated gradient text or backgrounds:
+   Apply to an element with background-size: 200% 200%
+   ============================================================ */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-animated {
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* Gradient text helper */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
+
+
+/* ============================================================
+   4. SHIMMER (loading / decorative)
+   ============================================================ */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 60%
+  );
+  animation: shimmer 1.8s ease infinite;
+}
+
+
+/* ============================================================
+   5. PULSE GLOW
+   ============================================================ */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(114, 125, 115, 0.2); }
+  50%       { box-shadow: 0 0 40px rgba(114, 125, 115, 0.4); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+
+/* ============================================================
+   6. FADE IN UP (scroll reveals)
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.65s ease forwards;
+}
+
+
+/* ============================================================
+   7. FADE IN LEFT / RIGHT
+   ============================================================ */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in-left  { animation: fadeInLeft  0.65s ease forwards; }
+.fade-in-right { animation: fadeInRight 0.65s ease forwards; }
+
+
+/* ============================================================
+   8. SCALE IN
+   ============================================================ */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+
+/* ============================================================
+   9. TIMELINE DOT PULSE
+   ============================================================ */
+@keyframes dotPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(114, 125, 115, 0.4); }
+  70%  { box-shadow: 0 0 0 10px rgba(114, 125, 115, 0);   }
+  100% { box-shadow: 0 0 0 0   rgba(114, 125, 115, 0);   }
+}
+
+.timeline-dot {
+  animation: dotPulse 2s infinite;
+}
+
+
+/* ============================================================
+   10. PROGRESS BAR FILL
+   Usage: set --target-width on the element, e.g. style="--target-width: 80%"
+   ============================================================ */
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: var(--target-width, 100%); }
+}
+
+.progress-bar {
+  animation: progressFill 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+
+/* ============================================================
+   11. ROTATE IN (theme toggle icon)
+   ============================================================ */
+@keyframes rotateIn {
+  from {
+    transform: rotate(-180deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.icon-enter {
+  animation: rotateIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+
+/* ============================================================
+   12. SLIDE DOWN (mobile menu)
+   ============================================================ */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu.open {
+  animation: slideDown 0.3s ease forwards;
+}
+
+/* Slide Up (close) */
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.mobile-menu.closing {
+  animation: slideUp 0.25s ease forwards;
+}
+
+
+/* ============================================================
+   13. SHAKE (form validation errors)
+   ============================================================ */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60%  { transform: translateX(-6px); }
+  40%, 80%  { transform: translateX(6px); }
+}
+
+.shake {
+  animation: shake 0.4s ease;
+}
+
+
+
+
+
+/* ============================================================
+   15. NAVBAR SCROLL STATE
+   ============================================================ */
+#navbar {
+  transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(var(--color-bg-rgb, 255, 255, 255), 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 30px var(--color-shadow, rgba(0, 0, 0, 0.1));
+}
+
+
+/* ============================================================
+   16. BLOB / PARTICLE BACKGROUND
+   ============================================================ */
+@keyframes blobMove {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 20px) scale(1.1); }
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.08;
+  pointer-events: none;
+  animation: blobMove 8s ease-in-out infinite alternate;
+}
+
+/* Staggered variants for multiple orbs */
+.hero-blob:nth-child(2) { animation-duration: 11s; animation-delay: -3s; }
+.hero-blob:nth-child(3) { animation-duration:  9s; animation-delay: -6s; }
+
+
+/* ============================================================
+   17. COUNTER / STAT NUMBER TRANSITION
+   ============================================================ */
+.stat-number {
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+
+/* ============================================================
+   19. ACTIVE NAV INDICATOR (underline slide)
+   ============================================================ */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+
+/* ============================================================
+   20. IMAGE HOVER ZOOM
+   ============================================================ */
+.project-img-wrapper {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.project-img-wrapper img {
+  display: block;
+  width: 100%;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.project-img-wrapper:hover img {
+  transform: scale(1.08);
+}
+
+
+/* ============================================================
+   21. SERVICE CARD BORDER ANIMATION
+   ============================================================ */
+.service-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: var(--color-primary);
+  transition: left 0.4s ease;
+  z-index: 1;
+}
+
+.service-card:hover::before {
+  left: 0;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+}
+
+
+/* ============================================================
+   22. BUTTON RIPPLE / SHINE EFFECT
+   ============================================================ */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  width: 200%;
+  height: 200%;
+  opacity: 1;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(114, 125, 115, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   ADDITIONAL MICRO-INTERACTIONS
+   ============================================================ */
+
+/* -- Generic button secondary -- */
+.btn-secondary {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+              background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* -- Card hover lift -- */
+.card,
+.project-card,
+.skill-card {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+.card:hover,
+.project-card:hover,
+.skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px var(--color-shadow, rgba(0, 0, 0, 0.12));
+}
+
+/* -- Icon bounce on card hover -- */
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-6px) scale(1.1); }
+}
+
+.card:hover .card-icon,
+.service-card:hover .service-icon {
+  animation: iconBounce 0.6s ease;
+}
+
+/* -- Skill tag / badge hover -- */
+.skill-tag,
+.tech-badge {
+  transition: transform 0.2s ease, background 0.2s ease,
+              color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-tag:hover,
+.tech-badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(114, 125, 115, 0.25);
+}
+
+/* -- Link underline grow -- */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* -- Social icon hover -- */
+.social-link {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-4px) scale(1.15);
+}
+
+/* -- Form input focus ring transition -- */
+.form-input,
+.form-textarea,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease,
+              background 0.25s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(114, 125, 115, 0.2);
+}
+
+/* -- Success / error field flash -- */
+@keyframes flashSuccess {
+  0%, 100% { box-shadow: 0 0 0 3px transparent; }
+  50%       { box-shadow: 0 0 0 3px rgba(72, 199, 142, 0.5); }
+}
+
+@keyframes flashError {
+  0%, 100% { box-shadow: 0 0 0 3px transparent; }
+  50%       { box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.5); }
+}
+
+.field-success { animation: flashSuccess 0.6s ease; }
+.field-error   { animation: flashError   0.6s ease; }
+
+/* -- Scroll-reveal utility states -- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger utility — add via JS: style="transition-delay: Xms" */
+.stagger-children > * {
+  transition-delay: calc(var(--stagger-index, 0) * 80ms);
+}
+
+/* -- Tooltip fade-in -- */
+@keyframes tooltipFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+[data-tooltip]:hover::before {
+  animation: tooltipFade 0.2s ease forwards;
+}
+
+/* -- Section heading underline grow -- */
+.section-title::after,
+.heading-line {
+  transition: width 0.5s ease;
+}
+
+/* -- Scroll-to-top button appear -- */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.scroll-top.visible {
+  animation: fadeInScale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* -- Notification / toast slide in -- */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(100%); }
+}
+
+.toast { animation: toastIn  0.35s ease forwards; }
+.toast.hiding { animation: toastOut 0.3s ease forwards; }
+
+/* -- Spinner / loader -- */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  animation: spin 0.9s linear infinite;
+}
+
+/* -- Page transition fade -- */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.page-enter {
+  animation: pageFadeIn 0.5s ease forwards;
+}
+
+/* -- Highlight ping (draw attention to an element) -- */
+@keyframes ping {
+  0%   { transform: scale(1);  opacity: 0.75; }
+  100% { transform: scale(2);  opacity: 0; }
+}
+
+.ping::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0;
+}
+
+
+/* ============================================================
+   18. REDUCED MOTION SUPPORT  (always last)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Ensure reveal elements become visible immediately */
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .float-animation {
+    animation: none;
+  }
+
+  .hero-blob {
+    animation: none;
+  }
+
+  .timeline-dot {
+    animation: none;
+  }
+
+  .gradient-animated,
+  .gradient-text {
+    animation: none;
+  }
+}
