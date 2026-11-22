@@ -346,8 +346,8 @@ const ContentBuilder = {
     const container = document.getElementById('education-cards');
     if (!container || !portfolioData.education) return;
 
-    container.innerHTML = portfolioData.education.map(edu => `
-      <article class="edu-card" data-animate="fade-up">
+    container.innerHTML = portfolioData.education.map((edu, i) => `
+      <article class="edu-card" data-animate="fade-up" data-delay="${i * 320}">
         <div class="edu-card__icon">
           <img src="assets/images/mansoura-university.jpeg" alt="Mansoura University logo" class="edu-card__logo" loading="lazy">
         </div>
@@ -375,37 +375,40 @@ const ContentBuilder = {
     // Newest first (data already sorted, but ensure it)
     const sorted = [...portfolioData.experience];
 
-    container.innerHTML = sorted.map((exp, i) => `
-      <div class="timeline-item ${i % 2 === 0 ? 'timeline-left' : 'timeline-right'}" data-animate="${i % 2 === 0 ? 'fade-right' : 'fade-left'}" data-delay="${i * 120}">
-        <div class="timeline-dot" aria-hidden="true"></div>
-        <article class="exp-card">
-          <div class="exp-card__header">
-            <div>
-              <h3 class="exp-card__title">${exp.title}</h3>
-              ${exp.company ? `<p class="exp-card__company"><i class="fas fa-building" aria-hidden="true"></i> ${exp.company}</p>` : ``}
+    container.innerHTML = sorted.map((exp, i) => {
+      const isLeft = i % 2 === 0;
+      return `
+        <div class="timeline-item ${isLeft ? 'timeline-left' : 'timeline-right'}" data-animate="${isLeft ? 'timeline-left' : 'timeline-right'}" data-delay="${i * 320}">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="exp-card">
+            <div class="exp-card__header">
+              <div>
+                <h3 class="exp-card__title">${exp.title}</h3>
+                ${exp.company ? `<p class="exp-card__company"><i class="fas fa-building" aria-hidden="true"></i> ${exp.company}</p>` : ``}
+              </div>
+              <div class="exp-card__meta">
+                <span class="exp-badge exp-badge--type">${exp.type}</span>
+                <span class="exp-badge exp-badge--date"><i class="fas fa-calendar" aria-hidden="true"></i> ${exp.duration}</span>
+                ${exp.current ? '<span class="exp-badge exp-badge--current">Current</span>' : ''}
+              </div>
             </div>
-            <div class="exp-card__meta">
-              <span class="exp-badge exp-badge--type">${exp.type}</span>
-              <span class="exp-badge exp-badge--date"><i class="fas fa-calendar" aria-hidden="true"></i> ${exp.duration}</span>
-              ${exp.current ? '<span class="exp-badge exp-badge--current">Current</span>' : ''}
+            <ul class="exp-card__list">
+              ${exp.responsibilities.map(r => `<li><i class="fas fa-chevron-right" aria-hidden="true"></i>${r}</li>`).join('')}
+            </ul>
+            <div class="exp-card__tech">
+              ${exp.technologies.map(t => `<span class="tech-badge">${t}</span>`).join('')}
             </div>
-          </div>
-          <ul class="exp-card__list">
-            ${exp.responsibilities.map(r => `<li><i class="fas fa-chevron-right" aria-hidden="true"></i>${r}</li>`).join('')}
-          </ul>
-          <div class="exp-card__tech">
-            ${exp.technologies.map(t => `<span class="tech-badge">${t}</span>`).join('')}
-          </div>
-        </article>
-      </div>
-    `).join('');
+          </article>
+        </div>
+      `;
+    }).join('');
   },
 
   buildProgrammingSkills() {
     const container = document.getElementById('programming-skills');
     if (!container || !portfolioData.programmingSkills) return;
     container.innerHTML = portfolioData.programmingSkills.map((skill, i) => `
-      <div class="prog-skill" data-animate="fade-up" data-delay="${i * 80}">
+      <div class="prog-skill" data-animate="fade-up" data-delay="${i * 160}">
         <span class="prog-skill__name"><i class="${skill.icon}" aria-hidden="true"></i> ${skill.name}</span>
       </div>
     `).join('');
@@ -415,38 +418,63 @@ const ContentBuilder = {
     const container = document.getElementById('tech-skills');
     if (!container || !portfolioData.techSkills) return;
     container.innerHTML = portfolioData.techSkills.map((skill, i) => `
-      <span class="tech-skill-badge" data-animate="scale-in" data-delay="${i * 60}">
+      <span class="tech-skill-badge" data-animate="scale-in" data-delay="${i * 140}">
         <i class="${skill.icon}" aria-hidden="true"></i> ${skill.name}
       </span>
     `).join('');
   },
 
   buildProjects() {
-    const container = document.getElementById('projects-grid');
+    const container = document.getElementById('projects-timeline') || document.getElementById('projects-grid');
     if (!container || !portfolioData.projects) return;
     const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect width='800' height='450' fill='%23D6D6D1'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' font-family='Inter,sans-serif' font-size='24' fill='%2366665F'%3EProject Preview%3C/text%3E%3C/svg%3E";
 
-    container.innerHTML = portfolioData.projects.map((proj, i) => `
-      <article class="project-card" data-animate="fade-up" data-delay="${i * 80}">
-        <div class="project-img-wrapper">
-          <img src="${proj.image || fallbackImage}"
-               alt="${proj.name} screenshot"
-               loading="lazy">
+    container.innerHTML = portfolioData.projects.map((proj, i) => {
+      const isLeft = i % 2 === 0;
+      const points = (proj.responsibilities && proj.responsibilities.length)
+        ? proj.responsibilities
+        : (proj.description ? [proj.description] : []);
+
+      return `
+        <div class="timeline-item ${isLeft ? 'timeline-left' : 'timeline-right'}" data-animate="${isLeft ? 'timeline-left' : 'timeline-right'}" data-delay="${i * 320}">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="exp-card project-card project-timeline-card">
+            <div class="exp-card__header">
+              <div>
+                <h3 class="exp-card__title">${proj.name}</h3>
+                ${(proj.category || proj.company) ? `<p class="exp-card__company"><i class="${proj.categoryIcon || 'fas fa-layer-group'}" aria-hidden="true"></i> ${proj.category || proj.company}</p>` : ''}
+              </div>
+              <div class="exp-card__meta">
+                ${proj.type ? `<span class="exp-badge exp-badge--type">${proj.type}</span>` : ''}
+                ${(proj.duration || proj.date) ? `<span class="exp-badge exp-badge--date"><i class="fas fa-calendar" aria-hidden="true"></i> ${proj.duration || proj.date}</span>` : ''}
+                ${(proj.current || proj.featured) ? '<span class="exp-badge exp-badge--current">Featured</span>' : ''}
+              </div>
+            </div>
+
+            ${proj.image ? `
+              <div class="project-img-wrapper project-timeline-img">
+                <img src="${proj.image}" alt="${proj.name} screenshot" loading="lazy">
+              </div>
+            ` : ''}
+
+            <ul class="exp-card__list">
+              ${points.map(r => `<li><i class="fas fa-chevron-right" aria-hidden="true"></i>${r}</li>`).join('')}
+            </ul>
+
+            <div class="exp-card__tech">
+              ${proj.technologies.map(t => `<span class="tech-badge">${t}</span>`).join('')}
+            </div>
+
+            <div class="project-card__actions project-timeline-actions">
+              ${proj.liveUrl && proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" class="btn-project btn-project--live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>` : ''}
+              ${proj.githubUrl && proj.githubUrl !== '#' ? `<a href="${proj.githubUrl}" class="btn-project btn-project--github" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>` : ''}
+              ${(proj.liveUrl === '#' || !proj.liveUrl) && (proj.githubUrl === '#' || !proj.githubUrl) ? `<a href="#" class="btn-project btn-project--live"><i class="fas fa-eye" aria-hidden="true"></i> View Project</a>` : ''}
+            </div>
+          </article>
         </div>
-        <div class="project-card__body">
-          <h3 class="project-card__title">${proj.name}</h3>
-          <p class="project-card__desc">${proj.description}</p>
-          <div class="project-card__tech">
-            ${proj.technologies.map(t => `<span class="tech-badge">${t}</span>`).join('')}
-          </div>
-          <div class="project-card__actions">
-            ${proj.liveUrl && proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" class="btn-project btn-project--live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo</a>` : ''}
-            ${proj.githubUrl && proj.githubUrl !== '#' ? `<a href="${proj.githubUrl}" class="btn-project btn-project--github" target="_blank" rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>` : ''}
-            ${(proj.liveUrl === '#' || !proj.liveUrl) && (proj.githubUrl === '#' || !proj.githubUrl) ? `<a href="#" class="btn-project btn-project--live"><i class="fas fa-eye" aria-hidden="true"></i> View Project</a>` : ''}
-          </div>
-        </div>
-      </article>
-    `).join('');
+      `;
+    }).join('');
+
     container.querySelectorAll('.project-img-wrapper img').forEach((img, i) => {
       img.addEventListener('error', () => {
         img.onerror = null;
@@ -462,7 +490,7 @@ const ContentBuilder = {
     if (!container || !portfolioData.services) return;
 
     container.innerHTML = portfolioData.services.map((svc, i) => `
-      <article class="service-card" data-animate="fade-up" data-delay="${i * 60}">
+      <article class="service-card" data-animate="fade-up" data-delay="${i * 90}">
         <div class="service-card__icon">
           <i class="${svc.icon}" aria-hidden="true"></i>
         </div>
@@ -571,6 +599,9 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioAnimations.initSkillsTabs();
     portfolioAnimations.initCounters();
     portfolioAnimations.initScrollReveal();
+    portfolioAnimations.initCustomCursor();
+    portfolioAnimations.initMouseEffects();
+    portfolioAnimations.initTitleReveal();
   }
 
   // Activate first skills tab

@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body>
+  <div id="cursor" aria-hidden="true"></div>
+  <div id="cursor-blur" aria-hidden="true"></div>
 
 <!-- ══════════════════════════════════════════
      NAVBAR
@@ -322,8 +324,8 @@
       <p class="section-subtitle">A selection of my recent work</p>
     </div>
 
-    <!-- Projects grid — populated by main.js -->
-    <div id="projects-grid" class="projects-grid" aria-label="Portfolio projects">
+    <!-- Projects timeline — populated by main.js -->
+    <div id="projects-timeline" class="timeline projects-timeline" aria-label="Featured projects timeline">
       <!-- Dynamic content inserted by main.js -->
     </div>
 
@@ -378,7 +380,7 @@
 
         <div class="contact-cards">
 
-          <div class="contact-card">
+          <div class="contact-card" data-animate="fade-up" data-delay="0">
             <div class="contact-card__icon" aria-hidden="true">
               <i class="fas fa-envelope"></i>
             </div>
@@ -388,7 +390,7 @@
             </div>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card" data-animate="fade-up" data-delay="320">
             <div class="contact-card__icon" aria-hidden="true">
               <i class="fas fa-phone"></i>
             </div>
@@ -398,7 +400,7 @@
             </div>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card" data-animate="fade-up" data-delay="640">
             <div class="contact-card__icon" aria-hidden="true">
               <i class="fab fa-whatsapp"></i>
             </div>
@@ -408,7 +410,7 @@
             </div>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card" data-animate="fade-up" data-delay="960">
             <div class="contact-card__icon" aria-hidden="true">
               <i class="fab fa-linkedin-in"></i>
             </div>
@@ -420,7 +422,7 @@
             </div>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card" data-animate="fade-up" data-delay="1280">
             <div class="contact-card__icon" aria-hidden="true">
               <i class="fab fa-github"></i>
             </div>
@@ -432,7 +434,7 @@
             </div>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card" data-animate="fade-up" data-delay="1600">
             <div class="contact-card__icon" aria-hidden="true">
               <i class="fas fa-map-marker-alt"></i>
             </div>

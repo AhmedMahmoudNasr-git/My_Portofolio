@@ -29,8 +29,32 @@
 }
 
 @media (max-width: 768px) {
+  [data-animate].pre-animate {
+    opacity: 0 !important;
+    transform: translateY(48px) !important;
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(.2,.75,.25,1) !important;
+  }
+  [data-animate].animated {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(.2,.75,.25,1) !important;
+  }
+
   :root { --section-space: 72px; }
   .container { width: min(100% - 32px, var(--container)); }
+
+  .section-title {
+    margin-bottom: 6px;
+  }
+  .section-title::after {
+    bottom: -2px;
+    height: 2.5px;
+  }
+  .section-line {
+    width: 42px;
+    height: 2.5px;
+    margin: 5px auto 10px;
+  }
 
   .hero-container {
     grid-template-columns: 1fr;
@@ -120,6 +144,33 @@
 @keyframes dockEnter { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 @media (max-width: 768px) { .social-dock { left: max(6px, env(safe-area-inset-left)); top: 62%; bottom: auto; transform: translateY(-50%); gap: 5px; } .social-dock a { width: 34px; height: 34px; border-radius: 12px; font-size: .88rem; } }
 @media (max-width: 380px) { .social-dock { left: 4px; top: 62%; gap: 4px; } .social-dock a { width: 30px; height: 30px; } }
+/* Services Grid & Cards Responsive Spacing */
+.services-grid { gap: 20px; }
+.services-grid > .service-card {
+  min-height: 165px;
+  padding: 16px 18px;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    gap: 18px;
+  }
+  .services-grid > .service-card {
+    min-height: auto;
+    padding: 15px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    gap: 16px;
+  }
+  .services-grid > .service-card {
+    min-height: auto;
+    padding: 14px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) { .social-dock a { animation: none; } }
 
 
@@ -199,7 +250,9 @@
   .container { width: calc(100% - 28px); }
   section { padding-block: var(--section-space); }
   .section-header { margin-bottom: 24px; }
-  .section-title { margin-bottom: 8px; font-size: clamp(1.45rem, 6vw, 1.75rem); }
+  .section-title { margin-bottom: 5px; font-size: clamp(1.45rem, 6vw, 1.75rem); }
+  .section-title::after { bottom: -2px; height: 2px; }
+  .section-line { width: 38px; height: 2px; margin: 4px auto 9px; }
   .section-subtitle { margin-bottom: 0; font-size: .82rem; }
 
   #home { padding-top: var(--navbar-height); }
@@ -693,7 +746,6 @@
   }
   .timeline-left .timeline-dot,
   .timeline-right .timeline-dot { display: none; }
-  .timeline-item[data-animate] { transform: none; }
 
   .skills-tabs {
     position: relative;
@@ -707,13 +759,6 @@
     gap: 8px;
     margin: 0;
     padding: 0 8px;
-  }
-  .section-header.pre-animate,
-  .skills-tabs.pre-animate,
-  .skills-pane > .pre-animate,
-  #home .hero-text.pre-animate,
-  #home .hero-image.pre-animate {
-    transform: none;
   }
   .skills-tab {
     width: auto;
@@ -758,9 +803,6 @@
     transform: none;
   }
 
-  #contact .contact-info.pre-animate {
-    transform: none;
-  }
   .contact-info { width: 100%; max-width: 100%; min-width: 0; text-align: center; }
   .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -811,4 +853,204 @@
 
   .stat-card, .edu-card, .exp-card, .prog-skill, .tech-skill-badge,
   .project-card, .service-card, .contact-card { box-sizing: border-box; max-width: 100%; }
+}
+
+/* Center the mobile experience and place the portrait ahead of the introduction. */
+@media (max-width: 768px) {
+  #home .hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #home .hero-image { order: -1; width: 100%; justify-content: center; }
+  #home .hero-text {
+    order: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+  #home .hero-cta { width: 100%; align-items: center; justify-content: center; }
+
+  #home .profile-img-wrapper {
+    width: clamp(190px, 58vw, 250px);
+    aspect-ratio: 1;
+    padding: 5px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    background: var(--color-surface);
+    box-shadow: none;
+    animation: none;
+  }
+  #home .profile-img { border-radius: 50%; object-position: center 28%; }
+
+  body, main, section, footer,
+  .section-header, .section-title, .section-subtitle,
+  .hero-text, .about-text, .about-text p,
+  .timeline-item, .edu-card, .exp-card,
+  .project-card, .service-card, .contact-card,
+  .contact-intro, .footer-inner {
+    text-align: center;
+  }
+  body :is(h1, h2, h3, h4, p, li, label, button, a,
+    .contact-card__value, .edu-card__desc, .exp-card__list,
+    .project-card__desc, .service-card__desc) {
+    text-align: center;
+  }
+  .hero-cta, .skills-tabs, .contact-cards,
+  .edu-card__header, .exp-card__header, .exp-card__meta,
+  .footer-inner, .footer-links {
+    justify-content: center;
+  }
+  .hero-cta .btn, .skills-tab, .contact-link-button,
+  .back-to-top, .contact-form button, button {
+    margin-inline: auto;
+  }
+  .contact-link-button { text-align: center; }
+  .timeline-item, .edu-card, .exp-card,
+  .project-card, .service-card, .contact-card { align-items: center; }
+}
+
+/* Keep reveal motion active on mobile; older layout overrides disabled transforms. */
+@media (max-width: 768px) {
+  [data-animate].pre-animate {
+    opacity: 0;
+    transform: translateY(48px) !important;
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(.2,.75,.25,1) !important;
+  }
+  [data-animate].animated {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(.2,.75,.25,1) !important;
+  }
+  #home [data-animate].pre-animate { transform: translateY(48px) !important; }
+  #home [data-animate].animated { transform: none !important; }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  [data-animate].pre-animate { opacity: 1 !important; transform: none !important; }
+}
+
+/* Final portrait-frame fix: keep one circular frame on every viewport. */
+#home .profile-img-wrapper {
+  aspect-ratio: 1;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  overflow: visible;
+  padding: 9px;
+  background: var(--color-surface);
+  isolation: isolate;
+}
+
+#home .profile-img-wrapper::before {
+  content: none;
+}
+
+#home .profile-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+@media (max-width: 768px) {
+  #home .profile-img-wrapper {
+    width: clamp(190px, 58vw, 250px);
+    max-width: 100%;
+    padding: 6px;
+  }
+}
+
+/* Services Grid & Cards Responsive Spacing */
+.services-grid { gap: 20px; }
+.services-grid > .service-card {
+  min-height: 165px;
+  padding: 16px 18px;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    gap: 18px;
+  }
+  .services-grid > .service-card {
+    min-height: auto;
+    padding: 15px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    gap: 16px;
+  }
+  .services-grid > .service-card {
+    min-height: auto;
+    padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #home .profile-img-wrapper::before {
+    animation: none;
+  }
+}
+
+/* Projects Timeline Responsive Enhancements */
+.projects-timeline { width: 100%; }
+.project-timeline-card { width: 100%; }
+
+@media (max-width: 768px) {
+  .project-timeline-img {
+    max-height: 190px;
+    margin: 10px 0 12px;
+  }
+  .project-timeline-actions {
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-timeline-img {
+    max-height: 170px;
+    border-radius: 8px;
+  }
+  .project-timeline-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .project-timeline-actions .btn-project {
+    flex: 1 1 auto;
+    justify-content: center;
+    font-size: .78rem;
+    padding: 7px 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .project-timeline-actions .btn-project {
+    width: 100%;
+  }
+}
+
+/* Ensure timeline items animate vertically on mobile without crossing the vertical line */
+@media (max-width: 900px) {
+  .timeline-item.pre-animate:not(.animated),
+  .timeline-left.pre-animate:not(.animated),
+  .timeline-right.pre-animate:not(.animated),
+  .timeline-item[data-animate].pre-animate:not(.animated) {
+    opacity: 0 !important;
+    transform: translateY(28px) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-image-col.pre-animate:not(.animated),
+  .about-content-col.pre-animate:not(.animated) {
+    opacity: 0 !important;
+    transform: translateY(24px) !important;
+  }
 }

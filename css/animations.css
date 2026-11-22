@@ -366,6 +366,9 @@
 .service-card {
   position: relative;
   overflow: hidden;
+}
+
+.service-card:not(.pre-animate) {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
