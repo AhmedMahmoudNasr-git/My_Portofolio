@@ -118,6 +118,22 @@ const portfolioData = {
   // ==========================================
   projects: [
     {
+      name: "Movies Platform",
+      category: "Movie Platform",
+      categoryIcon: "fas fa-film",
+      type: "Full Stack",
+      description: "A full-stack movie platform for managing and discovering movies, with title and cast search and genre filtering. Built with Node.js, Express.js, EJS, and MongoDB using the MVC architecture.",
+      responsibilities: [
+        "Implemented complete CRUD workflows for movie listings",
+        "Added search by title and cast, along with genre filtering",
+        "Organized backend routes, controllers, and MongoDB schemas using MVC"
+      ],
+      image: "assets/images/projects/movies-platform.png",
+      technologies: ["Node.js", "Express.js", "EJS", "MongoDB"],
+      liveUrl: "https://movies-platform-dun.vercel.app/",
+      githubUrl: "#",
+    },
+    {
       name: "Rownaq Perfumes",
       category: "E-Commerce Web Application",
       categoryIcon: "fas fa-shopping-bag",
